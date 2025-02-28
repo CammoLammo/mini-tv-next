@@ -99,7 +99,7 @@ export default function PartyList() {
                 {room1.party ? (
                     <>
                         {" "}
-                        Room 1 <br /> {room1.party.childName}'s Party <br />
+                        Room 1 <br /> {room1.party.childName}’s Party <br />
                         {room1.party.time} - {room1.party.endTime}
                     </>
                 ) : (
@@ -114,7 +114,7 @@ export default function PartyList() {
                 {room2.party ? (
                     <>
                         {" "}
-                        Room 2 <br /> {room2.party.childName}'s Party <br />
+                        Room 2 <br /> {room2.party.childName}’s Party <br />
                         {room2.party.time} - {room2.party.endTime}
                     </>
                 ) : (
@@ -130,7 +130,7 @@ export default function PartyList() {
                     <>
                         {" "}
                         Playing on Roxby Side (Bouncy Castle)
-                        <br /> {floorRoxby.party.childName}'s Party <br />
+                        <br /> {floorRoxby.party.childName}’s Party <br />
                         {floorRoxby.party.time} -{" "}
                         {floorRoxby.party.endRoxbyTime}
                     </>
@@ -147,7 +147,7 @@ export default function PartyList() {
                     <>
                         {" "}
                         Playing on Gympie Side (Foam Pits) <br />{" "}
-                        {floorGympie.party.childName}'s Party <br />
+                        {floorGympie.party.childName}’s Party <br />
                         {floorGympie.party.endRoxbyTime} -{" "}
                         {floorGympie.party.endGympieTime}
                     </>
@@ -163,7 +163,7 @@ export default function PartyList() {
                 {room3.party ? (
                     <>
                         {" "}
-                        Room 3 <br /> {room3.party.childName}'s Party <br />
+                        Room 3 <br /> {room3.party.childName}’s Party <br />
                         {room3.party.time} - {room3.party.endTime}
                     </>
                 ) : (
@@ -178,7 +178,7 @@ export default function PartyList() {
                 {room4.party ? (
                     <>
                         {" "}
-                        Room 4 <br /> {room4.party.childName}'s Party <br />
+                        Room 4 <br /> {room4.party.childName}’s Party <br />
                         {room4.party.time} - {room4.party.endTime}
                     </>
                 ) : (
