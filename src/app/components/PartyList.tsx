@@ -23,14 +23,12 @@ export default function PartyList() {
     const [parties, setParties] = useState<Party[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
-    const [currentTime, setCurrentTime] = useState(
-        new Date("2025-03-08T10:55:00")
-    );
+    const [currentTime, setCurrentTime] = useState(new Date());
 
     useEffect(() => {
         async function fetchParties() {
             try {
-                const getDate = "2025-03-08";
+                const getDate = currentTime.toISOString().split("T")[0];
                 const response = await fetch(`/api/parties?date=${getDate}`);
 
                 if (!response.ok) {
@@ -98,14 +96,12 @@ export default function PartyList() {
             <p className="bg-green-700 m-4 rounded-lg flex items-center justify-center">
                 {room1.party ? (
                     <>
-                        {" "}
                         Room 1 <br /> {room1.party.childName}’s Party <br />
                         {room1.party.time} - {room1.party.endTime}
                     </>
                 ) : (
                     <>
-                        {" "}
-                        Room 1 <br /> No Party{" "}
+                        Room 1 <br /> No Party
                     </>
                 )}
             </p>
@@ -113,14 +109,12 @@ export default function PartyList() {
             <p className="bg-green-700 m-4 rounded-lg flex items-center justify-center">
                 {room2.party ? (
                     <>
-                        {" "}
                         Room 2 <br /> {room2.party.childName}’s Party <br />
                         {room2.party.time} - {room2.party.endTime}
                     </>
                 ) : (
                     <>
-                        {" "}
-                        Room 2 <br /> No Party{" "}
+                        Room 2 <br /> No Party
                     </>
                 )}
             </p>
@@ -131,13 +125,11 @@ export default function PartyList() {
                         {" "}
                         Playing on Roxby Side (Bouncy Castle)
                         <br /> {floorRoxby.party.childName}’s Party <br />
-                        {floorRoxby.party.time} -{" "}
-                        {floorRoxby.party.endRoxbyTime}
+                        {floorRoxby.party.time} -{floorRoxby.party.endRoxbyTime}
                     </>
                 ) : (
                     <>
-                        {" "}
-                        Playing on Roxby Side (Bouncy Castle) <br /> No Party{" "}
+                        Playing on Roxby Side (Bouncy Castle) <br /> No Party
                     </>
                 )}
             </p>
@@ -145,16 +137,14 @@ export default function PartyList() {
             <p className="bg-cyan-800 col-span-2 m-4 rounded-lg flex items-center justify-center">
                 {floorGympie.party ? (
                     <>
-                        {" "}
-                        Playing on Gympie Side (Foam Pits) <br />{" "}
+                        Playing on Gympie Side (Foam Pits) <br />
                         {floorGympie.party.childName}’s Party <br />
-                        {floorGympie.party.endRoxbyTime} -{" "}
+                        {floorGympie.party.endRoxbyTime} -
                         {floorGympie.party.endGympieTime}
                     </>
                 ) : (
                     <>
-                        {" "}
-                        Playing on Gympie Side (Foam Pits) <br /> No Party{" "}
+                        Playing on Gympie Side (Foam Pits) <br /> No Party
                     </>
                 )}
             </p>
@@ -162,14 +152,12 @@ export default function PartyList() {
             <p className="bg-yellow-700 m-4 rounded-lg flex items-center justify-center">
                 {room3.party ? (
                     <>
-                        {" "}
                         Room 3 <br /> {room3.party.childName}’s Party <br />
                         {room3.party.time} - {room3.party.endTime}
                     </>
                 ) : (
                     <>
-                        {" "}
-                        Room 3 <br /> No Party{" "}
+                        Room 3 <br /> No Party
                     </>
                 )}
             </p>
@@ -177,14 +165,12 @@ export default function PartyList() {
             <p className="bg-yellow-700 m-4 rounded-lg flex items-center justify-center">
                 {room4.party ? (
                     <>
-                        {" "}
                         Room 4 <br /> {room4.party.childName}’s Party <br />
                         {room4.party.time} - {room4.party.endTime}
                     </>
                 ) : (
                     <>
-                        {" "}
-                        Room 4 <br /> No Party{" "}
+                        Room 4 <br /> No Party
                     </>
                 )}
             </p>
