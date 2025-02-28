@@ -6,6 +6,9 @@ interface Party {
     id: number;
     date: string;
     time: string;
+    endTime: string;
+    endRoxbyTime: string;
+    endGympieTime: string;
     datetime: string;
     childName: string;
     room: string;
@@ -21,13 +24,13 @@ export default function PartyList() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [currentTime, setCurrentTime] = useState(
-        new Date("2025-02-23T10:55:00")
+        new Date("2025-03-08T10:55:00")
     );
 
     useEffect(() => {
         async function fetchParties() {
             try {
-                const getDate = "2025-02-23";
+                const getDate = "2025-03-08";
                 const response = await fetch(`/api/parties?date=${getDate}`);
 
                 if (!response.ok) {
@@ -37,8 +40,12 @@ export default function PartyList() {
                 const data = await response.json();
 
                 setParties(data.parties);
-            } catch (error: any) {
-                setError(error.message);
+            } catch (error: unknown) {
+                setError(
+                    error instanceof Error
+                        ? error.message
+                        : "An unknown error occurred"
+                );
             } finally {
                 setLoading(false);
             }
@@ -46,12 +53,12 @@ export default function PartyList() {
         fetchParties();
     }, []);
 
-    // useEffect(() => {
-    //     const timer = setInterval(() => {
-    //         setCurrentTime(new Date());
-    //     }, 60000);
-    //     return () => clearInterval(timer);
-    // }, []);
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setCurrentTime(new Date());
+        }, 60000);
+        return () => clearInterval(timer);
+    }, []);
 
     let floorRoxby: SectionData = { section: "Roxby Side" };
     let floorGympie: SectionData = { section: "Gympie Side" };
@@ -92,7 +99,8 @@ export default function PartyList() {
                 {room1.party ? (
                     <>
                         {" "}
-                        Room 1 <br /> {room1.party.childName}'s Party{" "}
+                        Room 1 <br /> {room1.party.childName}'s Party <br />
+                        {room1.party.time} - {room1.party.endTime}
                     </>
                 ) : (
                     <>
@@ -106,7 +114,8 @@ export default function PartyList() {
                 {room2.party ? (
                     <>
                         {" "}
-                        Room 2 <br /> {room2.party.childName}'s Party{" "}
+                        Room 2 <br /> {room2.party.childName}'s Party <br />
+                        {room2.party.time} - {room2.party.endTime}
                     </>
                 ) : (
                     <>
@@ -121,7 +130,9 @@ export default function PartyList() {
                     <>
                         {" "}
                         Playing on Roxby Side (Bouncy Castle)
-                        <br /> {floorRoxby.party.childName}'s Party{" "}
+                        <br /> {floorRoxby.party.childName}'s Party <br />
+                        {floorRoxby.party.time} -{" "}
+                        {floorRoxby.party.endRoxbyTime}
                     </>
                 ) : (
                     <>
@@ -135,13 +146,15 @@ export default function PartyList() {
                 {floorGympie.party ? (
                     <>
                         {" "}
-                        Playing on Gympie Side (Zipline) <br />{" "}
-                        {floorGympie.party.childName}'s Party{" "}
+                        Playing on Gympie Side (Foam Pits) <br />{" "}
+                        {floorGympie.party.childName}'s Party <br />
+                        {floorGympie.party.endRoxbyTime} -{" "}
+                        {floorGympie.party.endGympieTime}
                     </>
                 ) : (
                     <>
                         {" "}
-                        Playing on Gympie Side (Zipline) <br /> No Party{" "}
+                        Playing on Gympie Side (Foam Pits) <br /> No Party{" "}
                     </>
                 )}
             </p>
@@ -150,7 +163,8 @@ export default function PartyList() {
                 {room3.party ? (
                     <>
                         {" "}
-                        Room 3 <br /> {room3.party.childName}'s Party{" "}
+                        Room 3 <br /> {room3.party.childName}'s Party <br />
+                        {room3.party.time} - {room3.party.endTime}
                     </>
                 ) : (
                     <>
@@ -164,7 +178,8 @@ export default function PartyList() {
                 {room4.party ? (
                     <>
                         {" "}
-                        Room 4 <br /> {room4.party.childName}'s Party{" "}
+                        Room 4 <br /> {room4.party.childName}'s Party <br />
+                        {room4.party.time} - {room4.party.endTime}
                     </>
                 ) : (
                     <>
