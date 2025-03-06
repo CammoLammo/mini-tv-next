@@ -23,9 +23,7 @@ export default function PartyList() {
     const [parties, setParties] = useState<Party[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
-    const [currentTime, setCurrentTime] = useState(
-        new Date("2025-03-01T12:00:00")
-    );
+    const [currentTime, setCurrentTime] = useState(new Date());
 
     useEffect(() => {
         async function fetchParties() {
@@ -53,12 +51,12 @@ export default function PartyList() {
         fetchParties();
     }, []);
 
-    // useEffect(() => {
-    //     const timer = setInterval(() => {
-    //         setCurrentTime(new Date());
-    //     }, 60000);
-    //     return () => clearInterval(timer);
-    // }, []);
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setCurrentTime(new Date());
+        }, 60000);
+        return () => clearInterval(timer);
+    }, []);
 
     let floorRoxby: SectionData = { section: "Roxby Side" };
     let floorGympie: SectionData = { section: "Gympie Side" };
