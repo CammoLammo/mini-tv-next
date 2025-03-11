@@ -64,19 +64,22 @@ export async function GET(request: Request): Promise<Response> {
                 const endGympieDate = new Date(
                     startDatetime.getTime() + 60 * 60000
                 );
-                const endRoxbyTime = endRoxbyDate.toLocaleTimeString("en-US", {
-                    hour: "numeric",
-                    minute: "2-digit",
-                    hour12: true,
-                });
-                const endGympieTime = endGympieDate.toLocaleTimeString(
-                    "en-US",
-                    {
+                const endRoxbyTime = endRoxbyDate
+                    .toLocaleTimeString("en-US", {
                         hour: "numeric",
                         minute: "2-digit",
                         hour12: true,
-                    }
-                );
+                    })
+                    .replace(" AM", "am")
+                    .replace(" PM", "pm");
+                const endGympieTime = endGympieDate
+                    .toLocaleTimeString("en-US", {
+                        hour: "numeric",
+                        minute: "2-digit",
+                        hour12: true,
+                    })
+                    .replace(" AM", "am")
+                    .replace(" PM", "pm");
 
                 return {
                     id: appointment.id,
@@ -86,7 +89,9 @@ export async function GET(request: Request): Promise<Response> {
                     endRoxbyTime: endRoxbyTime,
                     endGympieTime: endGympieTime,
                     datetime: appointment.datetime,
-                    childName: appointment.forms[0].values[0].value.trim(),
+                    childName: appointment.forms[0].values[0].value
+                        .trim()
+                        .concat("", "'s Party"),
                     room: partyRoom,
                 };
             }

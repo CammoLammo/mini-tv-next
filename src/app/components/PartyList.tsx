@@ -88,6 +88,68 @@ export default function PartyList() {
         }
     });
 
+    const diffCasual1 =
+        (currentTime.getTime() -
+            new Date(
+                currentTime.getFullYear(),
+                currentTime.getMonth(),
+                currentTime.getDate(),
+                11,
+                0,
+                0
+            ).getTime()) /
+        60000;
+    const diffCasual2 =
+        (currentTime.getTime() -
+            new Date(
+                currentTime.getFullYear(),
+                currentTime.getMonth(),
+                currentTime.getDate(),
+                13,
+                30,
+                0
+            ).getTime()) /
+        60000;
+
+    const casualParty1 = {
+        id: 1,
+        date: "abc",
+        endTime: "12:00pm",
+        childName: "Casual Play",
+        endRoxbyTime: "11:30am",
+        endGympieTime: "12:00pm",
+        time: "11:00am",
+        datetime: "abc",
+        room: "abc",
+    };
+    const casualParty2 = {
+        id: 2,
+        date: "abc",
+        endTime: "2:30pm",
+        childName: "Casual Play",
+        endRoxbyTime: "2:00pm",
+        endGympieTime: "2:30pm",
+        time: "1:30pm",
+        datetime: "abc",
+        room: "abc",
+    };
+
+    if (diffCasual1 >= 0 && diffCasual1 <= 60) {
+        if (diffCasual1 >= 30) {
+            floorGympie = { section: "Gympie Side", party: casualParty1 };
+        } else {
+            floorRoxby = { section: "Roxby Side", party: casualParty1 };
+        }
+    }
+
+    if (diffCasual2 >= 0 && diffCasual2 <= 60) {
+        if (diffCasual2 >= 30) {
+            floorGympie = { section: "Gympie Side", party: casualParty2 };
+        } else {
+            floorRoxby = { section: "Roxby Side", party: casualParty2 };
+        }
+    }
+
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error: {error}</div>;
 
@@ -96,7 +158,7 @@ export default function PartyList() {
             <p className="bg-green-700 m-4 rounded-lg flex items-center justify-center">
                 {room1.party ? (
                     <>
-                        Room 1 <br /> {room1.party.childName}’s Party <br />
+                        Room 1 <br /> {room1.party.childName} <br />
                         {room1.party.time} - {room1.party.endTime}
                     </>
                 ) : (
@@ -109,7 +171,7 @@ export default function PartyList() {
             <p className="bg-green-700 m-4 rounded-lg flex items-center justify-center">
                 {room2.party ? (
                     <>
-                        Room 2 <br /> {room2.party.childName}’s Party <br />
+                        Room 2 <br /> {room2.party.childName} <br />
                         {room2.party.time} - {room2.party.endTime}
                     </>
                 ) : (
@@ -124,8 +186,9 @@ export default function PartyList() {
                     <>
                         {" "}
                         Playing on Roxby Side (Bouncy Castle)
-                        <br /> {floorRoxby.party.childName}’s Party <br />
-                        {floorRoxby.party.time} -{floorRoxby.party.endRoxbyTime}
+                        <br /> {floorRoxby.party.childName} <br />
+                        {floorRoxby.party.time} -{" "}
+                        {floorRoxby.party.endRoxbyTime}
                     </>
                 ) : (
                     <>
@@ -138,8 +201,8 @@ export default function PartyList() {
                 {floorGympie.party ? (
                     <>
                         Playing on Gympie Side (Foam Pits) <br />
-                        {floorGympie.party.childName}’s Party <br />
-                        {floorGympie.party.endRoxbyTime} -
+                        {floorGympie.party.childName} <br />
+                        {floorGympie.party.endRoxbyTime} -{" "}
                         {floorGympie.party.endGympieTime}
                     </>
                 ) : (
@@ -152,7 +215,8 @@ export default function PartyList() {
             <p className="bg-yellow-700 m-4 rounded-lg flex items-center justify-center">
                 {room3.party ? (
                     <>
-                        Room 3 <br /> {room3.party.childName}’s Party <br />
+                        Room 3 <br /> {room3.party.childName}
+                        <br />
                         {room3.party.time} - {room3.party.endTime}
                     </>
                 ) : (
@@ -165,7 +229,7 @@ export default function PartyList() {
             <p className="bg-yellow-700 m-4 rounded-lg flex items-center justify-center">
                 {room4.party ? (
                     <>
-                        Room 4 <br /> {room4.party.childName}’s Party <br />
+                        Room 4 <br /> {room4.party.childName} <br />
                         {room4.party.time} - {room4.party.endTime}
                     </>
                 ) : (
