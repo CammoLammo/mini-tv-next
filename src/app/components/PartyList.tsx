@@ -154,7 +154,7 @@ export default function PartyList() {
     if (error) return <div>Error: {error}</div>;
 
     return (
-        <div className="min-h-screen grid grid-cols-2 text-center align-middle font-bold text-4xl bg-black text-white">
+        <div className="min-h-screen grid grid-cols-2 text-center align-middle font-bold text-3xl bg-black text-white">
             <p className="bg-green-700 m-4 rounded-lg flex items-center justify-center">
                 {room1.party ? (
                     <>

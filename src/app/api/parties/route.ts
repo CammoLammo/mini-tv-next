@@ -64,20 +64,18 @@ export async function GET(request: Request): Promise<Response> {
                 const endGympieDate = new Date(
                     startDatetime.getTime() + 60 * 60000
                 );
+                const formatOptions: Intl.DateTimeFormatOptions = {
+                    hour: "numeric",
+                    minute: "2-digit",
+                    hour12: true,
+                    timeZone: "Australia/Perth",
+                };
                 const endRoxbyTime = endRoxbyDate
-                    .toLocaleTimeString("en-US", {
-                        hour: "numeric",
-                        minute: "2-digit",
-                        hour12: true,
-                    })
+                    .toLocaleTimeString("en-AU", formatOptions)
                     .replace(" AM", "am")
                     .replace(" PM", "pm");
                 const endGympieTime = endGympieDate
-                    .toLocaleTimeString("en-US", {
-                        hour: "numeric",
-                        minute: "2-digit",
-                        hour12: true,
-                    })
+                    .toLocaleTimeString("en-AU", formatOptions)
                     .replace(" AM", "am")
                     .replace(" PM", "pm");
 
